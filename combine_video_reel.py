@@ -1,5 +1,5 @@
 import sys
-from moviepy.editor import VideoFileClip, concatenate_videoclips
+from moviepy.editor import VideoFileClip, clips_array
 
 def stack_videos(video1_path, video2_path, output_path):
     # Load the videos
@@ -11,7 +11,7 @@ def stack_videos(video1_path, video2_path, output_path):
     clip2_resized = clip2.resize(newsize=(1080, 840))
 
     # Stack the clips vertically
-    final_clip = concatenate_videoclips([clip1_resized, clip2_resized], method="compose")
+    final_clip = clips_array([[clip1_resized], [clip2_resized]])
 
     # Set the audio of the first clip to the final clip
     final_clip = final_clip.set_audio(clip1.audio)
